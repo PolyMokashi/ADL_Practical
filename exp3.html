@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Form Validation</title>
+</head>
+
+<body>
+    <h1>Registration Form</h1>
+    <form id="registrationForm" onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required><br>
+        <input type="submit" value="Register">
+    </form>
+    <script>
+        function validateForm() {
+            // Get form input values
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const phone = document.getElementById("phone").value;
+            // Regular expressions for validation
+            const nameRegex = /^[a-zA-Z ]{2,30}$/;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+            const phoneRegex = /^\d{10}$/;
+            // Validate name
+            if (!name.match(nameRegex)) {
+                alert("Please enter a valid name.");
+                return false;
+            }
+            // Validate email
+            if (!email.match(emailRegex)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+            // Validate password
+            if (!password.match(passwordRegex)) {
+                alert("Password must be 6-20 characters with at least one uppercase letter, one lowercase letter,and one digit.");
+                return false;
+            }
+            // Validate phone number
+            if (!phone.match(phoneRegex)) {
+                alert("Please enter a valid 10-digit phone number.");
+                return false;
+            }
+            // Form is valid
+            alert("Registration successful!");
+            return true;
+        }
+    </script>
+</body>
+
+</html>
